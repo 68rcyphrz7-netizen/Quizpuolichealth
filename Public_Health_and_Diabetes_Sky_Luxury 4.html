@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Public Health & Diabetes Mellitus — Prepared by ANS. Mira Algryani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky-bg-top: #f2f8fc;
+    --sky-bg-bot: #e3f0f9;
+    --card-surface: rgba(255, 255, 255, 0.96);
+    --sky-deep: #154360;
+    --sky-royal: #1f618d;
+    --sky-soft: #5dade2;
+    --sky-mist: #ebf5fb;
+    --sky-border: #cbe2f3;
+    --gold-accent: #c5a059;
+    --text-dark: #13293d;
+    --text-muted: #527087;
+    --ok-bg: #eafaf1;
+    --ok-border: #1e8449;
+    --err-bg: #fdedec;
+    --err-border: #b03a2e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: radial-gradient(circle at top right, #ffffff 0%, var(--sky-bg-top) 45%, var(--sky-bg-bot) 100%);
+    color: var(--text-dark);
+    min-height: 100vh;
+    padding: 28px 16px 60px;
+    line-height: 1.6;
+  }
+  .wrapper { max-width: 880px; margin: 0 auto; }
+  .hero {
+    background: linear-gradient(135deg, #103754 0%, #1b567e 55%, #2b74a3 100%);
+    color: #ffffff;
+    border-radius: 26px;
+    padding: 36px 28px;
+    text-align: center;
+    box-shadow: 0 20px 45px rgba(21, 67, 96, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(197, 160, 89, 0.38);
+    border-radius: 20px;
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(197, 160, 89, 0.65);
+    color: #f9e79f;
+    padding: 5px 16px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.35rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .hero p { font-size: 0.98rem; color: #d6eaf8; }
+  .student-box {
+    background: var(--card-surface);
+    border: 1px solid var(--sky-border);
+    border-radius: 20px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 24px rgba(21, 67, 96, 0.06);
+  }
+  .student-box label {
+    display: block;
+    font-size: 0.94rem;
+    font-weight: 700;
+    color: var(--sky-deep);
+    margin-bottom: 8px;
+  }
+  .student-input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1.5px solid #c5dff2;
+    background: #f8fbfd;
+    font-family: inherit;
+    font-size: 0.98rem;
+    color: var(--text-dark);
+    outline: none;
+  }
+  .student-input:focus { border-color: var(--sky-royal); background: #ffffff; }
+  .hud {
+    position: sticky;
+    top: 12px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--sky-border);
+    border-radius: 18px;
+    padding: 14px 22px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 28px rgba(21, 67, 96, 0.08);
+  }
+  .hud-pill { font-size: 0.94rem; font-weight: 600; color: var(--text-muted); }
+  .hud-pill strong { color: var(--sky-deep); font-weight: 700; }
+  .q-card {
+    background: var(--card-surface);
+    border: 1px solid var(--sky-border);
+    border-radius: 22px;
+    padding: 24px 26px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 24px rgba(21, 67, 96, 0.05);
+  }
+  .q-header { margin-bottom: 12px; }
+  .q-badge {
+    display: inline-block;
+    background: var(--sky-mist);
+    color: var(--sky-royal);
+    border: 1px solid #d4e6f1;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+  .q-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 16px; line-height: 1.55; }
+  .options-grid { display: grid; grid-template-columns: 1fr; gap: 11px; }
+  @media (min-width: 650px) { .options-grid { grid-template-columns: 1fr 1fr; } }
+  .opt-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    background: #f8fbfd;
+    border: 1.5px solid #d6e8f5;
+    border-radius: 14px;
+    padding: 13px 15px;
+    font-family: inherit;
+    font-size: 0.96rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+  .opt-btn:hover:not(:disabled) { background: var(--sky-mist); border-color: var(--sky-soft); }
+  .opt-btn:disabled { cursor: default; }
+  .opt-letter {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #bfd9ec;
+    color: var(--sky-royal);
+    font-weight: 700;
+    font-size: 0.84rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .opt-btn.correct { background: var(--ok-bg); border-color: var(--ok-border); color: var(--ok-border); font-weight: 600; }
+  .opt-btn.correct .opt-letter { background: var(--ok-border); color: #fff; border-color: var(--ok-border); }
+  .opt-btn.wrong { background: var(--err-bg); border-color: var(--err-border); color: var(--err-border); font-weight: 600; }
+  .opt-btn.wrong .opt-letter { background: var(--err-border); color: #fff; border-color: var(--err-border); }
+  .feedback { margin-top: 12px; font-size: 0.92rem; font-weight: 600; min-height: 20px; }
+  .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 30px; }
+  .btn {
+    border: none;
+    border-radius: 14px;
+    padding: 13px 26px;
+    font-family: inherit;
+    font-size: 0.98rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .btn-main {
+    background: linear-gradient(135deg, #154360, #2471a3);
+    color: #ffffff;
+    box-shadow: 0 10px 24px rgba(21, 67, 96, 0.22);
+  }
+  .btn-outline {
+    background: #ffffff;
+    color: var(--sky-deep);
+    border: 1.5px solid var(--sky-royal);
+  }
+  .result-panel {
+    display: none;
+    background: #ffffff;
+    border: 1.5px solid var(--gold-accent);
+    border-radius: 22px;
+    padding: 28px 24px;
+    margin-top: 26px;
+    text-align: center;
+    box-shadow: 0 14px 34px rgba(21, 67, 96, 0.12);
+  }
+  .result-panel h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.9rem;
+    color: var(--sky-deep);
+    margin-bottom: 8px;
+  }
+  .sync-status { margin-top: 10px; font-size: 0.92rem; font-weight: 700; }
+  .signature-box {
+    margin-top: 40px;
+    padding: 16px 24px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--gold-accent);
+    border-radius: 18px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: var(--sky-deep);
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <header class="hero">
+    <div class="hero-tag">Calm Sky Luxury Edition • 71 Questions</div>
+    <h1>Public Health &amp; Diabetes Mellitus</h1>
+    <p>Comprehensive Interactive Exam — Unpredictable Shuffled Answers &amp; Auto Grade Sync</p>
+  </header>
+
+  <section class="student-box">
+    <label for="studentName">Student Name / اسم الطالب أو الطالبة:</label>
+    <input type="text" id="studentName" class="student-input" placeholder="Write full name here..." oninput="updateHudName()">
+  </section>
+
+  <div class="hud">
+    <div class="hud-pill">Student: <strong id="hudName">Guest</strong></div>
+    <div class="hud-pill">Answered: <strong id="ansCount">0</strong> / <strong>71</strong></div>
+    <div class="hud-pill">Score: <strong id="scoreCount">0</strong></div>
+    <div class="hud-pill">Percentage: <strong id="pctCount">0%</strong></div>
+  </div>
+
+  <main id="questionsList">
+    
+    <div class="q-card" id="card_0">
+      <div class="q-header"><span class="q-badge">Question 1 of 71</span></div>
+      <div class="q-title">Trachoma complications (entropion, trachiasis, xerosis) are caused by:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 0)"><span class="opt-letter">A</span><span class="opt-text">Salmonella species</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 0)"><span class="opt-letter">B</span><span class="opt-text">HIV</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 0)"><span class="opt-letter">C</span><span class="opt-text">Chlamydia trachomatis</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 0)"><span class="opt-letter">D</span><span class="opt-text">Influenza virus</span></button></div>
+      <div class="feedback" id="fb_0"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_1">
+      <div class="q-header"><span class="q-badge">Question 2 of 71</span></div>
+      <div class="q-title">Which lifestyle habit is a major risk factor for lung and heart diseases?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 1)"><span class="opt-letter">A</span><span class="opt-text">Sleep deprivation</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 1)"><span class="opt-letter">B</span><span class="opt-text">Overeating fruits</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 1)"><span class="opt-letter">C</span><span class="opt-text">Smoking</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 1)"><span class="opt-letter">D</span><span class="opt-text">Exercise</span></button></div>
+      <div class="feedback" id="fb_1"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_2">
+      <div class="q-header"><span class="q-badge">Question 3 of 71</span></div>
+      <div class="q-title">Which is NOT a classic symptom of hyperglycemia?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 2)"><span class="opt-letter">A</span><span class="opt-text">Hair loss</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 2)"><span class="opt-letter">B</span><span class="opt-text">Weight loss</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 2)"><span class="opt-letter">C</span><span class="opt-text">Extreme thirst</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 2)"><span class="opt-letter">D</span><span class="opt-text">Frequent urination</span></button></div>
+      <div class="feedback" id="fb_2"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_3">
+      <div class="q-header"><span class="q-badge">Question 4 of 71</span></div>
+      <div class="q-title">Which of the following is NOT a risk factor for diabetes?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 3)"><span class="opt-letter">A</span><span class="opt-text">Healthy lifestyle</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 3)"><span class="opt-letter">B</span><span class="opt-text">Obesity</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 3)"><span class="opt-letter">C</span><span class="opt-text">Ethnicity</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 3)"><span class="opt-letter">D</span><span class="opt-text">High economic status</span></button></div>
+      <div class="feedback" id="fb_3"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_4">
+      <div class="q-header"><span class="q-badge">Question 5 of 71</span></div>
+      <div class="q-title">Adolescent pregnancy is considered a public health problem because it:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 4)"><span class="opt-letter">A</span><span class="opt-text">Improves population growth</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 4)"><span class="opt-letter">B</span><span class="opt-text">Increases maternal and infant mortality</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 4)"><span class="opt-letter">C</span><span class="opt-text">Decreases infectious diseases</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 4)"><span class="opt-letter">D</span><span class="opt-text">Prevents obesity</span></button></div>
+      <div class="feedback" id="fb_4"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_5">
+      <div class="q-header"><span class="q-badge">Question 6 of 71</span></div>
+      <div class="q-title">Polio mainly affects:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 5)"><span class="opt-letter">A</span><span class="opt-text">Bones</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 5)"><span class="opt-letter">B</span><span class="opt-text">Digestive system</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 5)"><span class="opt-letter">C</span><span class="opt-text">Nervous system, causing paralysis</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 5)"><span class="opt-letter">D</span><span class="opt-text">Skin</span></button></div>
+      <div class="feedback" id="fb_5"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_6">
+      <div class="q-header"><span class="q-badge">Question 7 of 71</span></div>
+      <div class="q-title">Food poisoning caused by Staphylococcus aureus occurs within:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 6)"><span class="opt-letter">A</span><span class="opt-text">1 week</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 6)"><span class="opt-letter">B</span><span class="opt-text">2–6 hours</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 6)"><span class="opt-letter">C</span><span class="opt-text">24–72 hours</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 6)"><span class="opt-letter">D</span><span class="opt-text">12–18 hours</span></button></div>
+      <div class="feedback" id="fb_6"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_7">
+      <div class="q-header"><span class="q-badge">Question 8 of 71</span></div>
+      <div class="q-title">Women with PCOS have increased risk of developing:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 7)"><span class="opt-letter">A</span><span class="opt-text">Hypothyroidism</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 7)"><span class="opt-letter">B</span><span class="opt-text">Arthritis</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 7)"><span class="opt-letter">C</span><span class="opt-text">Anemia</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 7)"><span class="opt-letter">D</span><span class="opt-text">Type 2 diabetes</span></button></div>
+      <div class="feedback" id="fb_7"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_8">
+      <div class="q-header"><span class="q-badge">Question 9 of 71</span></div>
+      <div class="q-title">PCOS may cause:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 8)"><span class="opt-letter">A</span><span class="opt-text">Excess vitamin D</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 8)"><span class="opt-letter">B</span><span class="opt-text">Low cholesterol</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 8)"><span class="opt-letter">C</span><span class="opt-text">High calcium</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 8)"><span class="opt-letter">D</span><span class="opt-text">High bad cholesterol and low good cholesterol</span></button></div>
+      <div class="feedback" id="fb_8"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_9">
+      <div class="q-header"><span class="q-badge">Question 10 of 71</span></div>
+      <div class="q-title">Childhood obesity is mainly caused by:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 9)"><span class="opt-letter">A</span><span class="opt-text">Genetic disorders</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 9)"><span class="opt-letter">B</span><span class="opt-text">Lack of exercise and faulty eating habits</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 9)"><span class="opt-letter">C</span><span class="opt-text">Viral infections</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 9)"><span class="opt-letter">D</span><span class="opt-text">Malnutrition and vitamin deficiency</span></button></div>
+      <div class="feedback" id="fb_9"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_10">
+      <div class="q-header"><span class="q-badge">Question 11 of 71</span></div>
+      <div class="q-title">Which of the following is a preventive measure for PCOS complications?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 10)"><span class="opt-letter">A</span><span class="opt-text">Overeating sugar</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 10)"><span class="opt-letter">B</span><span class="opt-text">Healthy diet and exercise</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 10)"><span class="opt-letter">C</span><span class="opt-text">Smoking</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 10)"><span class="opt-letter">D</span><span class="opt-text">Avoiding cholesterol checkups</span></button></div>
+      <div class="feedback" id="fb_10"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_11">
+      <div class="q-header"><span class="q-badge">Question 12 of 71</span></div>
+      <div class="q-title">Which of the following groups is at high risk for diabetes?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 11)"><span class="opt-letter">A</span><span class="opt-text">Age below 20</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 11)"><span class="opt-letter">B</span><span class="opt-text">Underweight people</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 11)"><span class="opt-letter">C</span><span class="opt-text">Family history of diabetes</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 11)"><span class="opt-letter">D</span><span class="opt-text">Athletes</span></button></div>
+      <div class="feedback" id="fb_11"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_12">
+      <div class="q-header"><span class="q-badge">Question 13 of 71</span></div>
+      <div class="q-title">The primary goal of public health is:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 12)"><span class="opt-letter">A</span><span class="opt-text">Improvement of lives through prevention and treatment of diseases</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 12)"><span class="opt-letter">B</span><span class="opt-text">Providing free medicines to everyone</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 12)"><span class="opt-letter">C</span><span class="opt-text">Treatment of rare diseases only</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 12)"><span class="opt-letter">D</span><span class="opt-text">Training medical students only</span></button></div>
+      <div class="feedback" id="fb_12"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_13">
+      <div class="q-header"><span class="q-badge">Question 14 of 71</span></div>
+      <div class="q-title">Which organism causes Gonorrhea?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 13)"><span class="opt-letter">A</span><span class="opt-text">Klebsiella species</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 13)"><span class="opt-letter">B</span><span class="opt-text">Treponema pallidum</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 13)"><span class="opt-letter">C</span><span class="opt-text">N. gonorrhea</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 13)"><span class="opt-letter">D</span><span class="opt-text">Escherichia coli</span></button></div>
+      <div class="feedback" id="fb_13"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_14">
+      <div class="q-header"><span class="q-badge">Question 15 of 71</span></div>
+      <div class="q-title">Which dietary recommendation is correct for prevention of diabetes?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 14)"><span class="opt-letter">A</span><span class="opt-text">Increase dietary fiber</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 14)"><span class="opt-letter">B</span><span class="opt-text">Avoid protein</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 14)"><span class="opt-letter">C</span><span class="opt-text">Avoid vegetables</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 14)"><span class="opt-letter">D</span><span class="opt-text">Increase saturated fat</span></button></div>
+      <div class="feedback" id="fb_14"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_15">
+      <div class="q-header"><span class="q-badge">Question 16 of 71</span></div>
+      <div class="q-title">The vaccine given at birth (within 1 week):</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 15)"><span class="opt-letter">A</span><span class="opt-text">DPT</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 15)"><span class="opt-letter">B</span><span class="opt-text">BCG + Polio</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 15)"><span class="opt-letter">C</span><span class="opt-text">Measles</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 15)"><span class="opt-letter">D</span><span class="opt-text">DT</span></button></div>
+      <div class="feedback" id="fb_15"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_16">
+      <div class="q-header"><span class="q-badge">Question 17 of 71</span></div>
+      <div class="q-title">Immunization is important in public health because it:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 16)"><span class="opt-letter">A</span><span class="opt-text">Reduces obesity</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 16)"><span class="opt-letter">B</span><span class="opt-text">Provides exercise to children</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 16)"><span class="opt-letter">C</span><span class="opt-text">Improves sanitation</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 16)"><span class="opt-letter">D</span><span class="opt-text">Prevents major infectious diseases</span></button></div>
+      <div class="feedback" id="fb_16"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_17">
+      <div class="q-header"><span class="q-badge">Question 18 of 71</span></div>
+      <div class="q-title">Diabetes prevention includes:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 17)"><span class="opt-letter">A</span><span class="opt-text">Avoiding fiber intake</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 17)"><span class="opt-letter">B</span><span class="opt-text">Excessive sugar intake</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 17)"><span class="opt-letter">C</span><span class="opt-text">Regular exercise</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 17)"><span class="opt-letter">D</span><span class="opt-text">Skipping meals</span></button></div>
+      <div class="feedback" id="fb_17"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_18">
+      <div class="q-header"><span class="q-badge">Question 19 of 71</span></div>
+      <div class="q-title">The first country where Swine flu (H1N1) was reported is:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 18)"><span class="opt-letter">A</span><span class="opt-text">Mexico</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 18)"><span class="opt-letter">B</span><span class="opt-text">China</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 18)"><span class="opt-letter">C</span><span class="opt-text">Canada</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 18)"><span class="opt-letter">D</span><span class="opt-text">USA</span></button></div>
+      <div class="feedback" id="fb_18"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_19">
+      <div class="q-header"><span class="q-badge">Question 20 of 71</span></div>
+      <div class="q-title">Unhealthy lifestyle contributes to:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 19)"><span class="opt-letter">A</span><span class="opt-text">Diabetes mellitus</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 19)"><span class="opt-letter">B</span><span class="opt-text">Hypoglycemia</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 19)"><span class="opt-letter">C</span><span class="opt-text">Vitamin deficiency</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 19)"><span class="opt-letter">D</span><span class="opt-text">Hypertension only</span></button></div>
+      <div class="feedback" id="fb_19"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_20">
+      <div class="q-header"><span class="q-badge">Question 21 of 71</span></div>
+      <div class="q-title">Impaired glucose tolerance (IGT) is diagnosed by:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 20)"><span class="opt-letter">A</span><span class="opt-text">HbA1c test</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 20)"><span class="opt-letter">B</span><span class="opt-text">Lipid profile</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 20)"><span class="opt-letter">C</span><span class="opt-text">Urine test</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 20)"><span class="opt-letter">D</span><span class="opt-text">Oral Glucose Tolerance Test (OGTT)</span></button></div>
+      <div class="feedback" id="fb_20"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_21">
+      <div class="q-header"><span class="q-badge">Question 22 of 71</span></div>
+      <div class="q-title">Cholera is caused by:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 21)"><span class="opt-letter">A</span><span class="opt-text">Vibrio cholerae</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 21)"><span class="opt-letter">B</span><span class="opt-text">Treponema pallidum</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 21)"><span class="opt-letter">C</span><span class="opt-text">Escherichia coli</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 21)"><span class="opt-letter">D</span><span class="opt-text">Salmonella</span></button></div>
+      <div class="feedback" id="fb_21"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_22">
+      <div class="q-header"><span class="q-badge">Question 23 of 71</span></div>
+      <div class="q-title">In PCOS, which hormone is secreted in high amounts?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 22)"><span class="opt-letter">A</span><span class="opt-text">LH</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 22)"><span class="opt-letter">B</span><span class="opt-text">Progesterone</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 22)"><span class="opt-letter">C</span><span class="opt-text">Estrogen</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 22)"><span class="opt-letter">D</span><span class="opt-text">FSH</span></button></div>
+      <div class="feedback" id="fb_22"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_23">
+      <div class="q-header"><span class="q-badge">Question 24 of 71</span></div>
+      <div class="q-title">Polycystic Ovary Syndrome (PCOS) is related to:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 23)"><span class="opt-letter">A</span><span class="opt-text">Hormonal imbalance</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 23)"><span class="opt-letter">B</span><span class="opt-text">Viral infection</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 23)"><span class="opt-letter">C</span><span class="opt-text">Vitamin deficiency</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 23)"><span class="opt-letter">D</span><span class="opt-text">Obesity only</span></button></div>
+      <div class="feedback" id="fb_23"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_24">
+      <div class="q-header"><span class="q-badge">Question 25 of 71</span></div>
+      <div class="q-title">Which is a preventive public health measure?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 24)"><span class="opt-letter">A</span><span class="opt-text">Health and nutrition education</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 24)"><span class="opt-letter">B</span><span class="opt-text">Vaccination programs</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 24)"><span class="opt-letter">C</span><span class="opt-text">Use of mosquito nets</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 24)"><span class="opt-letter">D</span><span class="opt-text">All of the above</span></button></div>
+      <div class="feedback" id="fb_24"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_25">
+      <div class="q-header"><span class="q-badge">Question 26 of 71</span></div>
+      <div class="q-title">Which type of diabetes is also called insulin dependent diabetes mellitus (IDDM)?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 25)"><span class="opt-letter">A</span><span class="opt-text">Type 2</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 25)"><span class="opt-letter">B</span><span class="opt-text">Gestational diabetes</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 25)"><span class="opt-letter">C</span><span class="opt-text">Type 1</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 25)"><span class="opt-letter">D</span><span class="opt-text">Malnutrition related diabetes</span></button></div>
+      <div class="feedback" id="fb_25"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_26">
+      <div class="q-header"><span class="q-badge">Question 27 of 71</span></div>
+      <div class="q-title">Which of the following is spreading rapidly among young heterosexual women?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 26)"><span class="opt-letter">A</span><span class="opt-text">Cholera</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 26)"><span class="opt-letter">B</span><span class="opt-text">Malaria</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 26)"><span class="opt-letter">C</span><span class="opt-text">Typhoid</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 26)"><span class="opt-letter">D</span><span class="opt-text">HIV/AIDS</span></button></div>
+      <div class="feedback" id="fb_26"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_27">
+      <div class="q-header"><span class="q-badge">Question 28 of 71</span></div>
+      <div class="q-title">The main cause of diabetes is:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 27)"><span class="opt-letter">A</span><span class="opt-text">Excessive sugar intake</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 27)"><span class="opt-letter">B</span><span class="opt-text">Defective production or action of insulin</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 27)"><span class="opt-letter">C</span><span class="opt-text">Pancreatic tumors</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 27)"><span class="opt-letter">D</span><span class="opt-text">Viral infections</span></button></div>
+      <div class="feedback" id="fb_27"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_28">
+      <div class="q-header"><span class="q-badge">Question 29 of 71</span></div>
+      <div class="q-title">Which virus causes Measles?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 28)"><span class="opt-letter">A</span><span class="opt-text">Polio virus</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 28)"><span class="opt-letter">B</span><span class="opt-text">Rubiola virus</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 28)"><span class="opt-letter">C</span><span class="opt-text">Hepatitis B virus</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 28)"><span class="opt-letter">D</span><span class="opt-text">HIV</span></button></div>
+      <div class="feedback" id="fb_28"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_29">
+      <div class="q-header"><span class="q-badge">Question 30 of 71</span></div>
+      <div class="q-title">More than 50% of women with PCOS develop ____ before the age of 40:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 29)"><span class="opt-letter">A</span><span class="opt-text">Rheumatism</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 29)"><span class="opt-letter">B</span><span class="opt-text">Type 2 diabetes</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 29)"><span class="opt-letter">C</span><span class="opt-text">Asthma</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 29)"><span class="opt-letter">D</span><span class="opt-text">Hypertension</span></button></div>
+      <div class="feedback" id="fb_29"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_30">
+      <div class="q-header"><span class="q-badge">Question 31 of 71</span></div>
+      <div class="q-title">Food fortification is useful in preventing:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 30)"><span class="opt-letter">A</span><span class="opt-text">Diabetes</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 30)"><span class="opt-letter">B</span><span class="opt-text">Influenza</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 30)"><span class="opt-letter">C</span><span class="opt-text">Heart disease</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 30)"><span class="opt-letter">D</span><span class="opt-text">Nutritional deficiency diseases (Vitamin A, Iron, Iodine)</span></button></div>
+      <div class="feedback" id="fb_30"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_31">
+      <div class="q-header"><span class="q-badge">Question 32 of 71</span></div>
+      <div class="q-title">Which type of diabetes is most common among middle-aged and elderly people?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 31)"><span class="opt-letter">A</span><span class="opt-text">Type 2</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 31)"><span class="opt-letter">B</span><span class="opt-text">Type 1</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 31)"><span class="opt-letter">C</span><span class="opt-text">Gestational diabetes</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 31)"><span class="opt-letter">D</span><span class="opt-text">Malnutrition related diabetes</span></button></div>
+      <div class="feedback" id="fb_31"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_32">
+      <div class="q-header"><span class="q-badge">Question 33 of 71</span></div>
+      <div class="q-title">Gestational diabetes occurs during:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 32)"><span class="opt-letter">A</span><span class="opt-text">Old age</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 32)"><span class="opt-letter">B</span><span class="opt-text">Childhood</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 32)"><span class="opt-letter">C</span><span class="opt-text">Pregnancy</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 32)"><span class="opt-letter">D</span><span class="opt-text">Obesity only</span></button></div>
+      <div class="feedback" id="fb_32"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_33">
+      <div class="q-header"><span class="q-badge">Question 34 of 71</span></div>
+      <div class="q-title">Which of the following is NOT a symptom of DKA?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 33)"><span class="opt-letter">A</span><span class="opt-text">Hypertension</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 33)"><span class="opt-letter">B</span><span class="opt-text">Abdominal pain</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 33)"><span class="opt-letter">C</span><span class="opt-text">Deep and fast breathing</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 33)"><span class="opt-letter">D</span><span class="opt-text">Fruity breath odor</span></button></div>
+      <div class="feedback" id="fb_33"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_34">
+      <div class="q-header"><span class="q-badge">Question 35 of 71</span></div>
+      <div class="q-title">Which disease is caused by Clostridium tetani?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 34)"><span class="opt-letter">A</span><span class="opt-text">Tetanus</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 34)"><span class="opt-letter">B</span><span class="opt-text">Diphtheria</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 34)"><span class="opt-letter">C</span><span class="opt-text">Pertussis</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 34)"><span class="opt-letter">D</span><span class="opt-text">Tuberculosis</span></button></div>
+      <div class="feedback" id="fb_34"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_35">
+      <div class="q-header"><span class="q-badge">Question 36 of 71</span></div>
+      <div class="q-title">In OGTT, diabetes is diagnosed if glucose level is:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 35)"><span class="opt-letter">A</span><span class="opt-text">≥ 160 mg/dL</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 35)"><span class="opt-letter">B</span><span class="opt-text">≥ 140 mg/dL</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 35)"><span class="opt-letter">C</span><span class="opt-text">≥ 180 mg/dL</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 35)"><span class="opt-letter">D</span><span class="opt-text">≥ 200 mg/dL</span></button></div>
+      <div class="feedback" id="fb_35"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_36">
+      <div class="q-header"><span class="q-badge">Question 37 of 71</span></div>
+      <div class="q-title">Which of the following is NOT a component of primary health care?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 36)"><span class="opt-letter">A</span><span class="opt-text">Safe water supply</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 36)"><span class="opt-letter">B</span><span class="opt-text">Maternal and child care</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 36)"><span class="opt-letter">C</span><span class="opt-text">Family planning</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 36)"><span class="opt-letter">D</span><span class="opt-text">Cancer treatment</span></button></div>
+      <div class="feedback" id="fb_36"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_37">
+      <div class="q-header"><span class="q-badge">Question 38 of 71</span></div>
+      <div class="q-title">Women who deliver babies weighing more than ____ kg are at risk of diabetes:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 37)"><span class="opt-letter">A</span><span class="opt-text">5.5</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 37)"><span class="opt-letter">B</span><span class="opt-text">2.5</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 37)"><span class="opt-letter">C</span><span class="opt-text">3.5</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 37)"><span class="opt-letter">D</span><span class="opt-text">4.5</span></button></div>
+      <div class="feedback" id="fb_37"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_38">
+      <div class="q-header"><span class="q-badge">Question 39 of 71</span></div>
+      <div class="q-title">Atherosclerosis is mainly associated with:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 38)"><span class="opt-letter">A</span><span class="opt-text">High carbohydrate intake</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 38)"><span class="opt-letter">B</span><span class="opt-text">Saturated fatty acids and cholesterol</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 38)"><span class="opt-letter">C</span><span class="opt-text">High protein diet</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 38)"><span class="opt-letter">D</span><span class="opt-text">Vitamin deficiency</span></button></div>
+      <div class="feedback" id="fb_38"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_39">
+      <div class="q-header"><span class="q-badge">Question 40 of 71</span></div>
+      <div class="q-title">Type 1 diabetes is caused mainly by:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 39)"><span class="opt-letter">A</span><span class="opt-text">Obesity</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 39)"><span class="opt-letter">B</span><span class="opt-text">Overeating sugar</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 39)"><span class="opt-letter">C</span><span class="opt-text">Autoimmune destruction of beta cells</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 39)"><span class="opt-letter">D</span><span class="opt-text">Viral infection</span></button></div>
+      <div class="feedback" id="fb_39"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_40">
+      <div class="q-header"><span class="q-badge">Question 41 of 71</span></div>
+      <div class="q-title">In Type 2 diabetes, insulin is:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 40)"><span class="opt-letter">A</span><span class="opt-text">Normal and effective</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 40)"><span class="opt-letter">B</span><span class="opt-text">Produced but not used properly</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 40)"><span class="opt-letter">C</span><span class="opt-text">Absent</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 40)"><span class="opt-letter">D</span><span class="opt-text">Produced excessively</span></button></div>
+      <div class="feedback" id="fb_40"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_41">
+      <div class="q-header"><span class="q-badge">Question 42 of 71</span></div>
+      <div class="q-title">Which of the following is NOT a component of public health practice?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 41)"><span class="opt-letter">A</span><span class="opt-text">Research</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 41)"><span class="opt-letter">B</span><span class="opt-text">Health education</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 41)"><span class="opt-letter">C</span><span class="opt-text">Building luxury hospitals</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 41)"><span class="opt-letter">D</span><span class="opt-text">Promotion of healthy lifestyle</span></button></div>
+      <div class="feedback" id="fb_41"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_42">
+      <div class="q-header"><span class="q-badge">Question 43 of 71</span></div>
+      <div class="q-title">Typhus is caused by:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 42)"><span class="opt-letter">A</span><span class="opt-text">Rickettsia prowazekii</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 42)"><span class="opt-letter">B</span><span class="opt-text">Clostridium tetani</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 42)"><span class="opt-letter">C</span><span class="opt-text">Vibrio cholerae</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 42)"><span class="opt-letter">D</span><span class="opt-text">Mycobacterium tuberculosis</span></button></div>
+      <div class="feedback" id="fb_42"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_43">
+      <div class="q-header"><span class="q-badge">Question 44 of 71</span></div>
+      <div class="q-title">Type 1 diabetes usually appears in:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 43)"><span class="opt-letter">A</span><span class="opt-text">Children between 10–14 years</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 43)"><span class="opt-letter">B</span><span class="opt-text">People over 50 years</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 43)"><span class="opt-letter">C</span><span class="opt-text">Pregnant women</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 43)"><span class="opt-letter">D</span><span class="opt-text">Obese adults</span></button></div>
+      <div class="feedback" id="fb_43"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_44">
+      <div class="q-header"><span class="q-badge">Question 45 of 71</span></div>
+      <div class="q-title">Which of the following practices prevents infections effectively?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 44)"><span class="opt-letter">A</span><span class="opt-text">Sleeping 8 hours</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 44)"><span class="opt-letter">B</span><span class="opt-text">Washing hands with soap and water</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 44)"><span class="opt-letter">C</span><span class="opt-text">Taking vitamins daily</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 44)"><span class="opt-letter">D</span><span class="opt-text">Drinking soft drinks</span></button></div>
+      <div class="feedback" id="fb_44"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_45">
+      <div class="q-header"><span class="q-badge">Question 46 of 71</span></div>
+      <div class="q-title">Maintaining normal body weight helps in:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 45)"><span class="opt-letter">A</span><span class="opt-text">Causing hypertension</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 45)"><span class="opt-letter">B</span><span class="opt-text">Preventing diabetes</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 45)"><span class="opt-letter">C</span><span class="opt-text">Causing obesity</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 45)"><span class="opt-letter">D</span><span class="opt-text">Increasing cholesterol</span></button></div>
+      <div class="feedback" id="fb_45"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_46">
+      <div class="q-header"><span class="q-badge">Question 47 of 71</span></div>
+      <div class="q-title">Regular blood glucose checkups help in:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 46)"><span class="opt-letter">A</span><span class="opt-text">Causing diabetes</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 46)"><span class="opt-letter">B</span><span class="opt-text">Preventing anemia</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 46)"><span class="opt-letter">C</span><span class="opt-text">Prevention and control of diabetes</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 46)"><span class="opt-letter">D</span><span class="opt-text">Causing hypertension</span></button></div>
+      <div class="feedback" id="fb_46"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_47">
+      <div class="q-header"><span class="q-badge">Question 48 of 71</span></div>
+      <div class="q-title">Malnutrition-related diabetes mellitus is abbreviated as:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 47)"><span class="opt-letter">A</span><span class="opt-text">IDDM</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 47)"><span class="opt-letter">B</span><span class="opt-text">MRDM</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 47)"><span class="opt-letter">C</span><span class="opt-text">GDM</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 47)"><span class="opt-letter">D</span><span class="opt-text">NIDDM</span></button></div>
+      <div class="feedback" id="fb_47"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_48">
+      <div class="q-header"><span class="q-badge">Question 49 of 71</span></div>
+      <div class="q-title">Public health is mainly concerned with:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 48)"><span class="opt-letter">A</span><span class="opt-text">The health of the community</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 48)"><span class="opt-letter">B</span><span class="opt-text">The health of individuals only</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 48)"><span class="opt-letter">C</span><span class="opt-text">Medical laboratory research</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 48)"><span class="opt-letter">D</span><span class="opt-text">Hospital administration</span></button></div>
+      <div class="feedback" id="fb_48"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_49">
+      <div class="q-header"><span class="q-badge">Question 50 of 71</span></div>
+      <div class="q-title">Resistance in tuberculosis and malaria is mainly due to:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 49)"><span class="opt-letter">A</span><span class="opt-text">Strong immune system</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 49)"><span class="opt-letter">B</span><span class="opt-text">Incomplete treatment and misuse of medicines</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 49)"><span class="opt-letter">C</span><span class="opt-text">Overnutrition</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 49)"><span class="opt-letter">D</span><span class="opt-text">Proper vaccination</span></button></div>
+      <div class="feedback" id="fb_49"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_50">
+      <div class="q-header"><span class="q-badge">Question 51 of 71</span></div>
+      <div class="q-title">Which hormone regulates glucose, fat, and amino acid metabolism?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 50)"><span class="opt-letter">A</span><span class="opt-text">Adrenaline</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 50)"><span class="opt-letter">B</span><span class="opt-text">Glucagon</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 50)"><span class="opt-letter">C</span><span class="opt-text">Insulin</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 50)"><span class="opt-letter">D</span><span class="opt-text">Cortisol</span></button></div>
+      <div class="feedback" id="fb_50"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_51">
+      <div class="q-header"><span class="q-badge">Question 52 of 71</span></div>
+      <div class="q-title">Diabetes mellitus is primarily a disorder of:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 51)"><span class="opt-letter">A</span><span class="opt-text">Lipid metabolism</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 51)"><span class="opt-letter">B</span><span class="opt-text">Protein metabolism</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 51)"><span class="opt-letter">C</span><span class="opt-text">Vitamin metabolism</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 51)"><span class="opt-letter">D</span><span class="opt-text">Carbohydrate metabolism</span></button></div>
+      <div class="feedback" id="fb_51"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_52">
+      <div class="q-header"><span class="q-badge">Question 53 of 71</span></div>
+      <div class="q-title">Health education plays an important role in:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 52)"><span class="opt-letter">A</span><span class="opt-text">Vitamin deficiency</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 52)"><span class="opt-letter">B</span><span class="opt-text">None of the above</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 52)"><span class="opt-letter">C</span><span class="opt-text">Prevention and control of diabetes</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 52)"><span class="opt-letter">D</span><span class="opt-text">Treatment of malaria</span></button></div>
+      <div class="feedback" id="fb_52"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_53">
+      <div class="q-header"><span class="q-badge">Question 54 of 71</span></div>
+      <div class="q-title">Kala-azar (Leishmaniasis) is transmitted by:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 53)"><span class="opt-letter">A</span><span class="opt-text">Mosquito</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 53)"><span class="opt-letter">B</span><span class="opt-text">Female sand fly</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 53)"><span class="opt-letter">C</span><span class="opt-text">Housefly</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 53)"><span class="opt-letter">D</span><span class="opt-text">Rat flea</span></button></div>
+      <div class="feedback" id="fb_53"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_54">
+      <div class="q-header"><span class="q-badge">Question 55 of 71</span></div>
+      <div class="q-title">Corynebacterium diphtheriae causes:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 54)"><span class="opt-letter">A</span><span class="opt-text">Malnutrition</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 54)"><span class="opt-letter">B</span><span class="opt-text">Paralysis</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 54)"><span class="opt-letter">C</span><span class="opt-text">Blindness</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 54)"><span class="opt-letter">D</span><span class="opt-text">Loss of voice (Aphonia)</span></button></div>
+      <div class="feedback" id="fb_54"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_55">
+      <div class="q-header"><span class="q-badge">Question 56 of 71</span></div>
+      <div class="q-title">Measles vaccine is given at:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 55)"><span class="opt-letter">A</span><span class="opt-text">9 months</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 55)"><span class="opt-letter">B</span><span class="opt-text">Birth</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 55)"><span class="opt-letter">C</span><span class="opt-text">10 years</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 55)"><span class="opt-letter">D</span><span class="opt-text">5 years</span></button></div>
+      <div class="feedback" id="fb_55"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_56">
+      <div class="q-header"><span class="q-badge">Question 57 of 71</span></div>
+      <div class="q-title">Diabetic ketoacidosis (DKA) occurs due to:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 56)"><span class="opt-letter">A</span><span class="opt-text">Excessive protein intake</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 56)"><span class="opt-letter">B</span><span class="opt-text">Severe insulin deficiency</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 56)"><span class="opt-letter">C</span><span class="opt-text">Excess insulin</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 56)"><span class="opt-letter">D</span><span class="opt-text">Kidney failure</span></button></div>
+      <div class="feedback" id="fb_56"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_57">
+      <div class="q-header"><span class="q-badge">Question 58 of 71</span></div>
+      <div class="q-title">Epidemic forecasting helps in:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 57)"><span class="opt-letter">A</span><span class="opt-text">Improving hospital profits</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 57)"><span class="opt-letter">B</span><span class="opt-text">Replacing medical treatment</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 57)"><span class="opt-letter">C</span><span class="opt-text">Reducing suffering and deaths by predicting disease spread</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 57)"><span class="opt-letter">D</span><span class="opt-text">Eliminating genetic disorders</span></button></div>
+      <div class="feedback" id="fb_57"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_58">
+      <div class="q-header"><span class="q-badge">Question 59 of 71</span></div>
+      <div class="q-title">Which pathogen causes Syphilis?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 58)"><span class="opt-letter">A</span><span class="opt-text">N. gonorrhea</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 58)"><span class="opt-letter">B</span><span class="opt-text">Treponema pallidum</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 58)"><span class="opt-letter">C</span><span class="opt-text">Rickettsia prowazekii</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 58)"><span class="opt-letter">D</span><span class="opt-text">Vibrio cholerae</span></button></div>
+      <div class="feedback" id="fb_58"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_59">
+      <div class="q-header"><span class="q-badge">Question 60 of 71</span></div>
+      <div class="q-title">Tetanus toxoid is given to pregnant women starting at:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 59)"><span class="opt-letter">A</span><span class="opt-text">4–5 months of pregnancy</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 59)"><span class="opt-letter">B</span><span class="opt-text">1 month of pregnancy</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 59)"><span class="opt-letter">C</span><span class="opt-text">2 months of pregnancy</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 59)"><span class="opt-letter">D</span><span class="opt-text">After delivery only</span></button></div>
+      <div class="feedback" id="fb_59"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_60">
+      <div class="q-header"><span class="q-badge">Question 61 of 71</span></div>
+      <div class="q-title">The most common cause of Urinary Tract Infections (UTI) is:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 60)"><span class="opt-letter">A</span><span class="opt-text">Escherichia coli</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 60)"><span class="opt-letter">B</span><span class="opt-text">Bacillus subtilis</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 60)"><span class="opt-letter">C</span><span class="opt-text">Clostridium botulinum</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 60)"><span class="opt-letter">D</span><span class="opt-text">Salmonella typhi</span></button></div>
+      <div class="feedback" id="fb_60"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_61">
+      <div class="q-header"><span class="q-badge">Question 62 of 71</span></div>
+      <div class="q-title">At 1.5, 2.5, and 3.5 months, the child receives:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 61)"><span class="opt-letter">A</span><span class="opt-text">Typhoid vaccine</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 61)"><span class="opt-letter">B</span><span class="opt-text">DPT + Polio</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 61)"><span class="opt-letter">C</span><span class="opt-text">Measles vaccine</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 61)"><span class="opt-letter">D</span><span class="opt-text">Cholera vaccine</span></button></div>
+      <div class="feedback" id="fb_61"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_62">
+      <div class="q-header"><span class="q-badge">Question 63 of 71</span></div>
+      <div class="q-title">Which of the following is NOT a symptom of PCOS?</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 62)"><span class="opt-letter">A</span><span class="opt-text">Increased body hair</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 62)"><span class="opt-letter">B</span><span class="opt-text">Acne</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 62)"><span class="opt-letter">C</span><span class="opt-text">Irregular periods</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 62)"><span class="opt-letter">D</span><span class="opt-text">High blood calcium</span></button></div>
+      <div class="feedback" id="fb_62"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_63">
+      <div class="q-header"><span class="q-badge">Question 64 of 71</span></div>
+      <div class="q-title">The major risk factor for Type 2 diabetes is:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 63)"><span class="opt-letter">A</span><span class="opt-text">Low birth weight</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 63)"><span class="opt-letter">B</span><span class="opt-text">Childhood age</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 63)"><span class="opt-letter">C</span><span class="opt-text">Obesity</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 63)"><span class="opt-letter">D</span><span class="opt-text">Viral infections</span></button></div>
+      <div class="feedback" id="fb_63"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_64">
+      <div class="q-header"><span class="q-badge">Question 65 of 71</span></div>
+      <div class="q-title">PCOS increases risk of:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 64)"><span class="opt-letter">A</span><span class="opt-text">Kidney stones</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 64)"><span class="opt-letter">B</span><span class="opt-text">Heart disease</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 64)"><span class="opt-letter">C</span><span class="opt-text">Skin allergy</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 64)"><span class="opt-letter">D</span><span class="opt-text">Appendicitis</span></button></div>
+      <div class="feedback" id="fb_64"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_65">
+      <div class="q-header"><span class="q-badge">Question 66 of 71</span></div>
+      <div class="q-title">Diabetes can be diagnosed if fasting blood glucose (FBG) is:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 65)"><span class="opt-letter">A</span><span class="opt-text">90 mg/dL</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 65)"><span class="opt-letter">B</span><span class="opt-text">110 mg/dL</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 65)"><span class="opt-letter">C</span><span class="opt-text">126 mg/dL or higher</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 65)"><span class="opt-letter">D</span><span class="opt-text">100 mg/dL</span></button></div>
+      <div class="feedback" id="fb_65"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_66">
+      <div class="q-header"><span class="q-badge">Question 67 of 71</span></div>
+      <div class="q-title">HbA1c diagnostic level for diabetes is:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 66)"><span class="opt-letter">A</span><span class="opt-text">≥ 6.5%</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 66)"><span class="opt-letter">B</span><span class="opt-text">≥ 5.5%</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 66)"><span class="opt-letter">C</span><span class="opt-text">≥ 7.0%</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 66)"><span class="opt-letter">D</span><span class="opt-text">≥ 6.0%</span></button></div>
+      <div class="feedback" id="fb_66"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_67">
+      <div class="q-header"><span class="q-badge">Question 68 of 71</span></div>
+      <div class="q-title">Slow wound healing is commonly associated with:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 67)"><span class="opt-letter">A</span><span class="opt-text">Malaria</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 67)"><span class="opt-letter">B</span><span class="opt-text">Thyroid disorder</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 67)"><span class="opt-letter">C</span><span class="opt-text">Hypertension</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 67)"><span class="opt-letter">D</span><span class="opt-text">Diabetes mellitus</span></button></div>
+      <div class="feedback" id="fb_67"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_68">
+      <div class="q-header"><span class="q-badge">Question 69 of 71</span></div>
+      <div class="q-title">Whooping cough (Pertussis) is caused by:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 68)"><span class="opt-letter">A</span><span class="opt-text">Mycobacterium tuberculosis</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 68)"><span class="opt-letter">B</span><span class="opt-text">Klebsiella species</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 68)"><span class="opt-letter">C</span><span class="opt-text">Haemophilus influenzae</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 68)"><span class="opt-letter">D</span><span class="opt-text">Bordetella pertussis</span></button></div>
+      <div class="feedback" id="fb_68"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_69">
+      <div class="q-header"><span class="q-badge">Question 70 of 71</span></div>
+      <div class="q-title">More than half of child illness and death is caused by germs entering through:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 69)"><span class="opt-letter">A</span><span class="opt-text">Mosquito bites</span></button><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 69)"><span class="opt-letter">B</span><span class="opt-text">Food and water</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 69)"><span class="opt-letter">C</span><span class="opt-text">Skin</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 69)"><span class="opt-letter">D</span><span class="opt-text">Air only</span></button></div>
+      <div class="feedback" id="fb_69"></div>
+    </div>
+    
+
+    <div class="q-card" id="card_70">
+      <div class="q-header"><span class="q-badge">Question 71 of 71</span></div>
+      <div class="q-title">Common bacteria causing infections include:</div>
+      <div class="options-grid"><button type="button" class="opt-btn" data-right="1" onclick="checkAns(this, 70)"><span class="opt-letter">A</span><span class="opt-text">All of the above</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 70)"><span class="opt-letter">B</span><span class="opt-text">Staphylococcus aureus</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 70)"><span class="opt-letter">C</span><span class="opt-text">Escherichia coli</span></button><button type="button" class="opt-btn" data-right="0" onclick="checkAns(this, 70)"><span class="opt-letter">D</span><span class="opt-text">Klebsiella species</span></button></div>
+      <div class="feedback" id="fb_70"></div>
+    </div>
+    
+  </main>
+
+  <div class="controls">
+    <button type="button" class="btn btn-main" onclick="submitAndShowResult()">Submit &amp; Send Grade</button>
+    <button type="button" class="btn btn-outline" id="reshuffleBtn" onclick="resetAndReshuffleForNextStudent()">Reset &amp; Reshuffle for Next Student</button>
+  </div>
+
+  <section class="result-panel" id="resultPanel">
+    <h2>Final Assessment Summary</h2>
+    <p id="resultStudent" style="font-size: 1.1rem; font-weight: 700; color: var(--sky-deep);"></p>
+    <p id="resultScore" style="font-size: 1.12rem; margin: 8px 0;"></p>
+    <p id="resultNote" style="font-weight: 700; color: var(--sky-royal);"></p>
+    <div class="sync-status" id="syncStatus"></div>
+  </section>
+
+  <footer class="signature-box">Prepared by ANS. Mira Algryani</footer>
+</div>
+
+<script>
+var SHEET_URL = "https://script.google.com/macros/s/AKfycbyK8ckt1rCjl1OeEfrZAy8oknq6jKOmReyvSFT59gxrtCAoBsN5CW-JdUhfB03iTKvI/exec";
+var totalQuestions = 71;
+var answeredCount = 0;
+var correctCount = 0;
+var alreadySent = false;
+var letters = ["A", "B", "C", "D"];
+
+function shuffleArray(arr) {
+  for (var i = arr.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+  return arr;
+}
+
+function shuffleQuestionsAndOptions() {
+  var list = document.getElementById("questionsList");
+  var cards = Array.prototype.slice.call(list.querySelectorAll(".q-card"));
+  shuffleArray(cards);
+
+  for (var i = 0; i < cards.length; i++) {
+    var card = cards[i];
+    var badge = card.querySelector(".q-badge");
+    if (badge) {
+      badge.textContent = "Question " + (i + 1) + " of " + totalQuestions;
+    }
+
+    var grid = card.querySelector(".options-grid");
+    var btns = Array.prototype.slice.call(grid.querySelectorAll(".opt-btn"));
+    shuffleArray(btns);
+
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].querySelector(".opt-letter").textContent = letters[j];
+      grid.appendChild(btns[j]);
+    }
+    list.appendChild(card);
+  }
+}
+
+function getStudentName() {
+  var val = document.getElementById("studentName").value.trim();
+  return val ? val : "Unnamed Student";
+}
+
+function updateHudName() {
+  document.getElementById("hudName").textContent = getStudentName();
+}
+
+function checkAns(btn, qIdx) {
+  var card = document.getElementById("card_" + qIdx);
+  var allBtns = card.querySelectorAll(".opt-btn");
+  var rightBtn = null;
+  var rightLetter = "";
+  var rightText = "";
+
+  for (var i = 0; i < allBtns.length; i++) {
+    allBtns[i].disabled = true;
+    if (allBtns[i].getAttribute("data-right") === "1") {
+      rightBtn = allBtns[i];
+      rightLetter = allBtns[i].querySelector(".opt-letter").textContent;
+      rightText = allBtns[i].querySelector(".opt-text").textContent;
+    }
+  }
+
+  var fb = document.getElementById("fb_" + qIdx);
+  answeredCount++;
+
+  if (btn.getAttribute("data-right") === "1") {
+    correctCount++;
+    btn.classList.add("correct");
+    fb.style.color = "#1e8449";
+    fb.textContent = "✓ Correct Answer";
+  } else {
+    btn.classList.add("wrong");
+    if (rightBtn) rightBtn.classList.add("correct");
+    fb.style.color = "#b03a2e";
+    fb.textContent = "✕ Incorrect — Correct: " + rightLetter + ") " + rightText;
+  }
+
+  document.getElementById("ansCount").textContent = answeredCount;
+  document.getElementById("scoreCount").textContent = correctCount;
+  var pct = ((correctCount / totalQuestions) * 100).toFixed(1);
+  document.getElementById("pctCount").textContent = pct + "%";
+}
+
+function submitAndShowResult() {
+  var name = getStudentName();
+  var pct = ((correctCount / totalQuestions) * 100).toFixed(1) + "%";
+  var panel = document.getElementById("resultPanel");
+  panel.style.display = "block";
+
+  document.getElementById("resultStudent").textContent = "Student: " + name;
+  document.getElementById("resultScore").textContent =
+    "Final Score: " + correctCount + " / " + totalQuestions + " (" + pct + ") — Answered: " + answeredCount + "/" + totalQuestions;
+
+  var numPct = parseFloat(pct);
+  var note = "";
+  if (numPct >= 90) note = "Exceptional mastery!";
+  else if (numPct >= 75) note = "Strong performance!";
+  else if (numPct >= 60) note = "Good progress! Keep practicing.";
+  else note = "Keep reviewing the lecture sheets.";
+  document.getElementById("resultNote").textContent = note;
+
+  var statusEl = document.getElementById("syncStatus");
+
+  if (alreadySent) {
+    statusEl.style.color = "#1e8449";
+    statusEl.textContent = "✓ Grade already sent to your Google Sheet.";
+  } else {
+    statusEl.style.color = "#1f618d";
+    statusEl.textContent = "Sending grade to Google Sheet...";
+    alreadySent = true;
+
+    fetch(SHEET_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({
+        name: name,
+        score: correctCount,
+        total: totalQuestions,
+        percentage: pct,
+        answered: answeredCount
+      })
+    }).then(function() {
+      statusEl.style.color = "#1e8449";
+      statusEl.textContent = "✓ Grade sent to your Google Sheet!";
+    }).catch(function() {
+      alreadySent = false;
+      statusEl.style.color = "#b03a2e";
+      statusEl.textContent = "✕ Could not send grade. Check internet connection.";
+    });
+  }
+
+  panel.scrollIntoView({ behavior: "smooth" });
+}
+
+function resetAndReshuffleForNextStudent() {
+  answeredCount = 0;
+  correctCount = 0;
+  alreadySent = false;
+  document.getElementById("studentName").value = "";
+  document.getElementById("hudName").textContent = "Guest";
+  document.getElementById("ansCount").textContent = "0";
+  document.getElementById("scoreCount").textContent = "0";
+  document.getElementById("pctCount").textContent = "0%";
+  document.getElementById("resultPanel").style.display = "none";
+  document.getElementById("syncStatus").textContent = "";
+
+  var allBtns = document.querySelectorAll(".opt-btn");
+  for (var i = 0; i < allBtns.length; i++) {
+    allBtns[i].disabled = false;
+    allBtns[i].classList.remove("correct", "wrong");
+  }
+  var allFbs = document.querySelectorAll(".feedback");
+  for (var j = 0; j < allFbs.length; j++) {
+    allFbs[j].textContent = "";
+  }
+  shuffleQuestionsAndOptions();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+window.addEventListener("DOMContentLoaded", shuffleQuestionsAndOptions);
+</script>
+</body>
+</html>
